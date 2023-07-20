@@ -1,0 +1,46 @@
+<div class="container">
+
+	
+	<table>
+		<thead>
+			<tr>
+                <th>ID</th>
+				<th>Email</th>
+				<th>Phone</th>
+                <th>Skills</th>
+                <th>Field</th>
+				<th>status</th>
+				<th>action</th>
+                
+				
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let c of Candidates"  >
+			
+                <td>{{c.id}}</td>
+				<td>{{c.email}}</td>
+				<td>{{c.phone}}</td>
+                <td>{{c.skills}}</td>
+				<td>{{c.field}}</td>
+				<td>{{c.status}}</td>
+				<td id="a">
+					<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+						<mat-icon>more_vert</mat-icon>
+					  </button>
+					  <mat-menu #menu="matMenu" class="actions" id="menu">
+                    <button (click)="recruit(c)">Recruit</button> 
+                    <button (click)="reject(c)">Reject</button>
+                    <button (click)="openDialog(c)">Give Feedback</button>
+					  </mat-menu>
+                </td>
+			
+			</tr>
+			
+		</tbody>
+	</table>
+	<div id="viewer">
+	</div>
+</div>
+
