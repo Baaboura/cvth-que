@@ -18,7 +18,7 @@ export class HomeComponent {
   hrs:HR[]=[];
   managers:Manager[]=[];
   l:number;
-  
+
   constructor(private router : Router,private authS:AuthService,private candidateService:CandidatesService,private manService:ManagersService
     ,private hrService: HRService ){
       this.hrService.getAll().subscribe(data=>{this.hrs=data});
@@ -28,14 +28,14 @@ export class HomeComponent {
     document.getElementById("state1")!.style.display="none";
     document.getElementById("state2")!.style.display="none";
   }
-  
-  
+
+
   public click(){
     if( document.getElementById("state")!.style.display=="block"){
       this.router.navigate(['/AdHomeC']);
 
   }
-  
+
   else{
     this.router.navigate(['/AdLogC']);
   }
@@ -69,8 +69,8 @@ else{
 
 public onSubmit(){
   console.log(this.hrs[1].name);
- 
-  
+
+
   if(this.user == undefined || this.password == undefined || this.user == "" || this.password == ""){
     alert("Missing fields");
   }
@@ -80,30 +80,31 @@ public onSubmit(){
       console.log(window.localStorage.getItem("user"));
       window.location.assign('/AdHomeC');
     }
-    
+
     else{
         let k=0;
-        
-      for(let i=0;i<this.hrs.length ;i++){
-         if((this.hrs[i].name == this.user)&&(this.hrs[i].password==this.password)){           
+ console.log("aaaaaa");
+      for(let i=0;i<this.hrs.length ;i++){    console.log(i);
+         if((this.hrs[i].name == this.user)&&(this.hrs[i].password==this.password)){
          k++;
-         console.log("aaaaaa");
+
          window.localStorage.setItem("user",this.user);
          console.log(window.localStorage.getItem("user"));
          window.location.assign('/HomeHRC');
     }
-    for(let i=0;i<this.hrs.length ;i++){
+  }
+  for(let i=0;i<this.managers .length ;i++){
       console.log(this.hrs);
-     if((this.managers[i].name==this.user)&&(this.managers[i].password==this.password)){           
+     if((this.managers[i].name==this.user)&&(this.managers[i].password==this.password)){
       k++;
-      
+
       window.localStorage.setItem("user",this.user);
       console.log(window.localStorage.getItem("user"));
-      
+
       window.location.assign('/HomeManC');
      }
    }
-  }
+
   if(k==0){
     alert("wrong username or password");
   }
