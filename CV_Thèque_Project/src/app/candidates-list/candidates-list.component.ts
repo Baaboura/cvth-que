@@ -33,41 +33,41 @@ export class CandidatesListComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("a"+this.appC.UserLogged);
-   
+
     this.candidateService.get("pending").subscribe(data =>{this.Candidates0=data});
     this.dataSource.paginator = this.paginator;
 
 console.log(this.Candidates0);
 
     document.getElementById("state2")!.style.display="block";
-    
-  
-    
+
+
+
   }
 
 getCV(cv:string){
   this.router.navigate(['/assets',cv]);
-  
+
 }
 recruit(c:Candidate){
 
   this.candidateService.putC(c,"waiting for Manager interview").subscribe();
   window.location.reload();
-  
-  
+
+
 }
 reject(c:Candidate){
 
   this.candidateService.putC(c,"rejected").subscribe();
   window.location.reload();
-  
-  
+
+
 }
 search(){
   let a=""
  console.log(this.field)
 {
-    this.Candidates = this.Candidates0.filter(ce => ((ce.field == this.field)||this.field== "All"||this.field== "") 
+    this.Candidates = this.Candidates0.filter(ce => ((ce.field == this.field)||this.field== "All"||this.field== "")
     &&  ce.skills.toUpperCase().includes(this.skill.toUpperCase()))
   }
   console.log(this.Candidates0);
